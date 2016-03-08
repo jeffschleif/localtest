@@ -1,0 +1,73 @@
+
+  "Description": "AWS CloudFormation RDS Stack.",
+  "Parameters": {
+    "MultiAZ": {
+      "Description":"Determines whether this ASG is configured for a single Availability Zone ('False') or multiple Availability Zones ('True').",
+      "Type":"String",
+      "Default":"True",
+      "AllowedValues" : ["True", "False"],
+      "ConstraintDescription": "Must be 'True' or 'False'."
+    },
+    "DBAllocatedStorage": {
+      "ConstraintDescription": "must be between 5 and 1024Gb.",
+      "Default": "30",
+      "Description": "The size of the database (Gb)",
+      "MaxValue": "1024",
+      "MinValue": "5",
+      "Type": "Number"
+    },
+    "DBClass": {
+      "AllowedValues": [
+        "db.m1.small",
+        "db.t2.small",
+	"db.r3.2xlarge",
+        "db.m1.large",
+        "db.m1.xlarge",
+        "db.m2.xlarge",
+        "db.m2.2xlarge",
+        "db.m2.4xlarge"
+      ],
+      "ConstraintDescription": "must select a valid database instance type.",
+      "Default": "db.m1.small",
+      "Description": "Database instance class",
+      "Type": "String"
+    },
+    "DBName": {
+      "AllowedPattern": "[a-zA-Z][a-zA-Z0-9]*",
+      "ConstraintDescription": "must begin with a letter and contain only alphanumeric characters.",
+      "Default": "dsidefault",
+      "Description": "dsidefault",
+      "MaxLength": "64",
+      "MinLength": "1",
+      "Type": "String"
+    },
+    "DBEngine": {
+      "AllowedPattern": "[a-zA-Z][a-zA-Z0-9]*",
+      "ConstraintDescription": "must begin with a letter and contain only alphanumeric characters.",
+      "Default": "dbname",
+      "Description": "The database engine to deploy to this RDS instance",
+      "MaxLength": "64",
+      "MinLength": "1",
+      "Type": "String"
+    },
+    "DBEngineVersion": {
+      "Default": "dbname",
+      "Description": "The database engine version to deploy to this RDS instance",
+      "MaxLength": "128",
+      "MinLength": "1",
+      "Type": "String"
+
+    "DBPassword": {
+      "Description": "The database admin account password",
+      "MaxLength": "64",
+      "MinLength": "1",
+      "NoEcho": true,
+      "Default": "none",
+      "Type": "String"
+    },
+    "DBSnapshotIdentifier": {
+      "Description": "The snapshot to instantiate this RDS instance from",
+      "MaxLength": "64",
+      "MinLength": "1",
+      "NoEcho": true,
+      "Type": "String"
